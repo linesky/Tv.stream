@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Streaming</title>
+</head>
+<body>
+    <h1>Game Streaming</h1>
+    <img id="video" style="width: 80%;" />
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <script>
+        const socket = io();
+        const img = document.getElementById('video');
+        
+        socket.on('frame', function(data) {
+            const arrayBufferView = new Uint8Array(data);
+            const blob = new Blob([arrayBufferView], { type: 'image/jpeg' });
+            const urlCreator = window.URL || window.webkitURL;
+            const imageUrl = urlCreator.createObjectURL(blob);
+            img.src = imageUrl;
+        });
+    </script>
+</body>
+</html>
+
