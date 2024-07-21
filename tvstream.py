@@ -5,6 +5,7 @@ import pygetwindow as gw
 import threading
 from flask import Flask, render_template
 from flask_socketio import SocketIO, emit
+#pip install pygetwindow mss opencv-python flask flask-socketio
 
 app = Flask(__name__)
 socketio = SocketIO(app)
@@ -49,6 +50,7 @@ def wait_for_enter():
 def index():
     return render_template('index.html')
 
+print("\x1bc\x1b[47;34m")
 if __name__ == "__main__":
     window_title = gw.getActiveWindow().title
 
